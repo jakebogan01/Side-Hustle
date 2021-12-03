@@ -1,4 +1,6 @@
 const mix = require('laravel-mix');
+const domain = 'sidehustle.test';
+const homedir = require('os').homedir();
 
 /*
  |--------------------------------------------------------------------------
@@ -13,5 +15,19 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+        require('tailwindcss'),
+    ]).browserSync({
+        proxy: 'https://' + domain,
+        notify: {
+            styles: {
+                top: 'auto',
+                bottom: '-20rem'
+            }
+        },
+        host: domain,
+        open: 'external',
+        https: {
+            key: homedir + "/.config/valet/Certificates/" + domain + ".key",
+            cert: homedir + "/.config/valet/Certificates/" + domain + ".crt"
+        },
+    });
