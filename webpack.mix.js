@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-const domain = 'sidehustle.test';
+const domain = 'hustle.test';
 const homedir = require('os').homedir();
 
 /*
